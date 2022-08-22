@@ -1,8 +1,10 @@
-from tkinter import Tk, Canvas
+from Window_Class import Window
+from Canvas_Class import Mod_Canvas
 
-window_size = [160*7, 90*7]
+root = Window()
 
-root = Tk()
-root.geometry(f"{window_size[0]}x{window_size[1]}")
+canvas = Mod_Canvas(root, (98, 255, 145))
+canvas.draw()
 
 root.mainloop()
+
