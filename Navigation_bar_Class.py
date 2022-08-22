@@ -1,15 +1,19 @@
-import math
-from tkinter import Canvas
+from Canvas_Class import Mod_Canvas
 from Window_Class import Window
+import math
 
 
-class Mod_Canvas(object):
-    def __init__(self, root: Window, background: (int, int, int) = (0, 0, 0)):
+class Nav_bar(object):
+    def __init__(self, root: Window, canvas: Mod_Canvas):
         self.win = root
-        self.canvas = Canvas(self.win.win, bg=self.rgb(background[0], background[1], background[2]))
+        self.canvas = canvas.canvas
+
+        self.active_page = 0
+        self.page_list = ["Home", "Storage", "create New"]
 
     def draw(self):
-        self.canvas.place(x=-2, y=-2, width=self.win.win_size[0]+10, height=self.win.win_size[1]+10)
+        color = self.rgb(87, 112, 230)
+        self.canvas.create_rectangle(0, 0, self.win.win_size[0]+10, 50, fill=color, outline=color)
 
     @staticmethod
     def rgb(r: int, g: int, b: int) -> str:
@@ -23,3 +27,5 @@ class Mod_Canvas(object):
         out += f"{hex_list[math.floor(b/16)]}{hex_list[round((b/16-math.floor(b/16))*16)]}"
 
         return out
+
+
