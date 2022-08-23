@@ -1,5 +1,6 @@
 from Canvas_Class import Mod_Canvas
 from Window_Class import Window
+from tkinter import W
 import math
 
 
@@ -9,11 +10,19 @@ class Nav_bar(object):
         self.canvas = canvas.canvas
 
         self.active_page = 0
-        self.page_list = ["Home", "Storage", "create New"]
+        self.page_list = ["Home", "Storage", "Create new"]
+
+        self.background_label = None
+        self.page_label = [None, None, None]
 
     def draw(self):
-        color = self.rgb(87, 112, 230)
-        self.canvas.create_rectangle(0, 0, self.win.win_size[0]+10, 50, fill=color, outline=color)
+        if self.background_label is None:
+            color = self.rgb(87, 112, 230)
+            self.background_label = self.canvas.create_rectangle(0, 0, self.win.win_size[0] + 10, 50, fill=color, outline=color)
+
+        for i, txt in enumerate(self.page_list):
+            if self.page_label[i] is None:
+                self.page_label[i] = self.canvas.create_text(25+100*i, 25, anchor=W, text=txt, fill="white", font=("Arial", 15))
 
     @staticmethod
     def rgb(r: int, g: int, b: int) -> str:
