@@ -9,7 +9,12 @@ class Mod_Canvas(object):
         self.canvas = Canvas(self.win.win, bg=self.rgb(background[0], background[1], background[2]))
 
     def draw(self):
-        self.canvas.place(x=-2, y=-2, width=self.win.win_size[0]+10, height=self.win.win_size[1]+10)
+        self.canvas.place(x=-2, y=-2, width=self.win.win.winfo_width()+10, height=self.win.win.winfo_height()+10)
+
+    def resize(self):
+        if bool(self.canvas.place_info()):
+            self.canvas.place_forget()
+            self.draw()
 
     @staticmethod
     def rgb(r: int, g: int, b: int) -> str:
